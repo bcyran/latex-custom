@@ -1,0 +1,44 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{unititle}[20.10.2019 v1.0 Title page for university raports
+by Bazyli Cyran]
+
+% Obligatory \university
+\newcommand*{\university}[1]{
+    \renewcommand*{\@university}{#1}}
+\newcommand*{\@university}{%
+    \PackageError{unititle}{\noexpand\university not set}{}}
+% Obligatory \course
+\newcommand*{\course}[1]{
+    \renewcommand*{\@course}{#1}}
+\newcommand*{\@course}{%
+    \PackageError{unititle}{\noexpand\course not set}{}}
+% Obligatory \supervisor
+\newcommand*{\supervisor}[1]{
+    \renewcommand*{\@supervisor}{#1}}
+\newcommand*{\@supervisor}{%
+    \PackageError{unititle}{\noexpand\supervisor not set}{}}
+% Optional \group
+\newcommand*{\group}[1]{
+    \renewcommand*{\@group}{#1}}
+\newcommand*{\@group}{}
+
+% Define the new titlepage
+\renewcommand*{\maketitle}{%
+    \begin{titlepage}
+        \centering
+        {\scshape\LARGE \@university \par}
+        \vspace{5cm}
+        {\scshape\Large \@course \par}
+        \vspace{2cm}
+        {\huge\bfseries \@title \par}
+        \vspace{2cm}
+        {\Large\itshape \@author \par}
+        \vfill
+        \ifx\@group\empty \else \@group \\ \fi
+        Prowadzący: \@supervisor
+        \vfill
+        {\large \@date \par}
+    \end{titlepage}
+}
+
+\endinput
